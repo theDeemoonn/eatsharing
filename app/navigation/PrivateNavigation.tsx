@@ -12,7 +12,11 @@ const PrivateNavigation: FC = () => {
 	const { user } = useAuth()
 
 	return (
-		<Stack.Navigator screenOptions={{}}>
+		<Stack.Navigator
+			screenOptions={{
+				headerShown: false
+			}}
+		>
 			{user ? (
 				routes.map(route => <Stack.Screen key={route.name} {...route} />)
 			) : (
