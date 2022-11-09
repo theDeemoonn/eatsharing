@@ -4,6 +4,7 @@ export type TypeRootStackParamList = {
 	Auth: undefined
 	Home: undefined
 	Profile: undefined
+	AddOrder: undefined
 	Settings: undefined
 }
 

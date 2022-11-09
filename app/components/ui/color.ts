@@ -12,3 +12,5 @@ export const color = {
 	transparent: 'transparent',
 	gray: '#6c757d'
 }
+
+export const getColor = (colorName: keyof typeof color) => color[colorName]

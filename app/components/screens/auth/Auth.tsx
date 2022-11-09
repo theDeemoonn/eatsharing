@@ -34,7 +34,7 @@ const Auth: FC = () => {
 								{isAuth ? 'Зарегистрироваться' : 'Войти'}
 							</Button>
 							<Pressable onPress={() => setIsAuth(prev => !prev)}>
-								<Text className='text-blue-400 opacity-30 text-right text-base mt-3'>
+								<Text className='text-blue-400 opacity-30 text-right text-base mt-5'>
 									{isAuth ? 'Войти' : 'Зарегистрироваться'}
 								</Text>
 							</Pressable>

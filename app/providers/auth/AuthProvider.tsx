@@ -19,21 +19,20 @@ export const AuthContext = createContext({} as IContext)
 SplashScreen.preventAutoHideAsync()
 
 const AuthProvider: FC<PropsWithChildren<unknown>> = ({ children }) => {
-	const [user, setUser] = useState<TypeUserState>({} as IUser)
+	const [user, setUser] = useState<TypeUserState>({} as IUser) // This is the original code
+	// const [user, setUser] = useState<TypeUserState>(null) // This is the code I tested
 
 	useEffect(() => {
 		let isMounted = true
 
 		const getUser = async () => {
-			if (isMounted) {
-				//get user from async storage and write to store
+			try {
+			} catch {
+			} finally {
+				await SplashScreen.hideAsync()
 			}
-
-			await SplashScreen.hideAsync()
 		}
-
 		getUser()
-
 		return () => {
 			isMounted = false
 		}

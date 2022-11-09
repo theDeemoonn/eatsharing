@@ -18,10 +18,10 @@ const MenuItem: FC<IMenuItemProps> = ({ currentRoute, item, nav }) => {
 	const isActive = currentRoute === item.path
 
 	return (
-		<Pressable className='w-[25%]' onPress={() => nav(item.path)}>
+		<Pressable className='w-[30%]' onPress={() => nav(item.path)}>
 			<MaterialCommunityIcons
 				name={item.iconName}
-				size={26}
+				size={30}
 				color={isActive ? color.primary : color.gray}
 			/>
 		</Pressable>

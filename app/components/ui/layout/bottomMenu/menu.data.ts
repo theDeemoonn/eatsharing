@@ -6,11 +6,11 @@ export const menuData: IMenuItem[] = [
 		iconName: 'home'
 	},
 	{
-		path: 'Profile',
-		iconName: 'account'
+		path: 'AddOrder',
+		iconName: 'plus'
 	},
 	{
-		path: 'Settings',
+		path: 'Profile',
 		iconName: 'account-settings'
 	}
 ]
