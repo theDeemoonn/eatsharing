@@ -1,9 +1,7 @@
 import * as SplashScreen from 'expo-splash-screen'
 import {
-	Dispatch,
 	FC,
 	PropsWithChildren,
-	SetStateAction,
 	createContext,
 	useEffect,
 	useState
@@ -11,12 +9,10 @@ import {
 
 import { IUser } from '@/types/user.inteerface'
 
-export type TypeUserState = IUser | null
-
-interface IContext {
-	user: TypeUserState
-	setUser: Dispatch<SetStateAction<TypeUserState>>
-}
+import {
+	IContext,
+	TypeUserState
+} from '@/providers/auth/authProvider.interface'
 
 export const AuthContext = createContext({} as IContext)
 
@@ -26,7 +22,7 @@ const AuthProvider: FC<PropsWithChildren<unknown>> = ({ children }) => {
 	const [user, setUser] = useState<TypeUserState>({} as IUser)
 
 	useEffect(() => {
-		let isMounted = false
+		let isMounted = true
 
 		const getUser = async () => {
 			if (isMounted) {
