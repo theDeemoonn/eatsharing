@@ -6,6 +6,7 @@ import { IAuthFormData } from '@/types/auth.interface'
 
 import AuthFields from '@/components/screens/auth/AuthFields'
 import { Button, DismissKeyboard, Loader } from '@/components/ui'
+import { useAuthMutations } from '@/hooks/useAuthMutations'
 
 const Auth: FC = () => {
 	const [isAuth, setIsAuth] = useState(false)
@@ -14,9 +15,12 @@ const Auth: FC = () => {
 		mode: 'onChange'
 	})
 
-	const onSubmit: SubmitHandler<IAuthFormData> = ({ email, password }) => {}
+	const { isLoading, loginSync, registerSync } = useAuthMutations(reset)
 
-	const isLoading = false
+	const onSubmit: SubmitHandler<IAuthFormData> = data => {
+		if (isAuth) registerSync(data)
+		else loginSync(data)
+	}
 
 	return (
 		<DismissKeyboard>
