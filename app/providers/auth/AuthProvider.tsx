@@ -11,6 +11,7 @@ import {
 	IContext,
 	TypeUserState
 } from '@/providers/auth/authProvider.interface'
+import { getAccessToken, getUserFromStorage } from '@/services/auth/auth.helper'
 
 export const AuthContext = createContext({} as IContext)
 
@@ -25,6 +26,13 @@ const AuthProvider: FC<PropsWithChildren<unknown>> = ({ children }) => {
 
 		const getUser = async () => {
 			try {
+				const accessToken = await getAccessToken()
+
+				if (accessToken) {
+					const user = await getUserFromStorage()
+
+					if (isMounted) setUser(user)
+				}
 			} catch {
 			} finally {
 				await SplashScreen.hideAsync()
