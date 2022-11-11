@@ -9,10 +9,12 @@ const Profile: FC = () => {
 	const { setUser } = useAuth()
 	return (
 		<View>
-			<Text>Profile</Text>
+			<Text className='opacity-40 items-center flex-row justify-end mt-16'>
+				Profile
+			</Text>
 
 			<Pressable
-				className='opacity-40 items-center flex-row justify-end'
+				className='opacity-40 items-center flex-row justify-end mt-16'
 				onPress={() => AuthService.logout().then(() => setUser(null))}
 			>
 				<MaterialCommunityIcons name='logout' size={24} color='black' />
