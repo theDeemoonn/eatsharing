@@ -16,9 +16,10 @@ const BottomTabNavigator: FC<IBottomTabNavigatorProps> = props => {
 
 	return (
 		<View
-			className='pt-5 px-5 mb-2 flex-row justify-between items-center justify-center mx-10 w-full border-t border-t-solid border-gray-200 bg-white'
+			className='flex-row py-5 mb-2 items-center justify-between w-full border-t border-gray-200 bg-white'
 			style={{
-				paddingBottom: bottom + 5
+				paddingBottom: bottom + 5,
+				paddingLeft: 40
 			}}
 		>
 			{menuData.map(item => (
