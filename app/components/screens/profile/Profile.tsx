@@ -9,7 +9,7 @@ const Profile: FC = () => {
 	const { setUser } = useAuth()
 	return (
 		<View>
-			<Text className='opacity-40 items-center flex-row justify-end mt-16'>
+			<Text className='bg-red-500 mt-16 justify-center items-center'>
 				Profile
 			</Text>
 

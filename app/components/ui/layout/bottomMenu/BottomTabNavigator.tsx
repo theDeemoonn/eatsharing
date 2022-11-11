@@ -16,7 +16,7 @@ const BottomTabNavigator: FC<IBottomTabNavigatorProps> = props => {
 
 	return (
 		<View
-			className='pt-5 px-2 flex-row justify-between items-center justify-center mx-12 w-full border-t border-t-solid border-gray-200 bg-white'
+			className='pt-5 px-5 mb-2 flex-row justify-between items-center justify-center mx-10 w-full border-t border-t-solid border-gray-200 bg-white'
 			style={{
 				paddingBottom: bottom + 5
 			}}

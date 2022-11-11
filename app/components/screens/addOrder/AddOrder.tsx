@@ -4,7 +4,9 @@ import { Text, View } from 'react-native'
 const AddOrder: FC = () => {
 	return (
 		<View>
-			<Text>AddOrder</Text>
+			<Text className='bg-red-500 mt-16 justify-center items-center'>
+				AddOrder
+			</Text>
 		</View>
 	)
 }
