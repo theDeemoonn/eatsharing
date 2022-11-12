@@ -8,7 +8,7 @@ import { IAuthFormData } from '@/types/auth.interface'
 
 import AuthFields from '@/components/screens/auth/AuthFields'
 import { useProfile } from '@/components/screens/profile/useProfile'
-import { Button, Heading, Layout, Loader } from '@/components/ui'
+import { Heading, Layout, Loader } from '@/components/ui'
 import Avatar from '@/components/ui/icon/avatar.jpg'
 import { useScaleOnMount } from '@/hooks/styleHooks/useScaleOnMount'
 import { useAuth } from '@/hooks/useAuth'
@@ -27,10 +27,21 @@ const Profile: FC = () => {
 
 	return (
 		<Layout isHasPadding>
-			<Heading title={'Профиль'} />
+			<View className='flex-row justify-between'>
+				<Heading title={'Профиль'} />
+				<Pressable
+					className='opacity-40 items-center flex-row justify-end'
+					onPress={() => AuthService.logout().then(() => setUser(null))}
+				>
+					<MaterialCommunityIcons name='logout' size={24} color='black' />
+					<Text className='text-black text-center text-lg font-medium mr-2'>
+						Выйти
+					</Text>
+				</Pressable>
+			</View>
 			<Animated.View
 				style={styleAnimation}
-				className='my-6 items-center justify-center'
+				className='my-6 items-center justify-center mt-12'
 			>
 				<Image source={Avatar} className='w-40 h-40 rounded-2xl' />
 			</Animated.View>
@@ -39,18 +50,22 @@ const Profile: FC = () => {
 			) : (
 				<View className='mb-10'>
 					<AuthFields control={control} />
-					<Button onPress={handleSubmit(onSubmit)}>Обновить профиль</Button>
+					{/*<Button onPress={handleSubmit(onSubmit)}>Обновить профиль</Button>*/}
+					<Pressable
+						className='opacity-40 items-center flex-row justify-center mt-16'
+						// onPress={() => AuthService.logout().then(() => setUser(null))}
+					>
+						<MaterialCommunityIcons
+							name='account-edit-outline'
+							size={24}
+							color='black'
+						/>
+						<Text className='text-black text-center text-lg font-medium mr-2 pl-2'>
+							Редактировать профиль
+						</Text>
+					</Pressable>
 				</View>
 			)}
-			<Pressable
-				className='opacity-40 items-center flex-row justify-end mt-16'
-				onPress={() => AuthService.logout().then(() => setUser(null))}
-			>
-				<MaterialCommunityIcons name='logout' size={24} color='black' />
-				<Text className='text-black text-center text-lg font-medium mr-2'>
-					Выйти
-				</Text>
-			</Pressable>
 		</Layout>
 	)
 }
