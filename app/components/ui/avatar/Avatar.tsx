@@ -6,12 +6,10 @@ import { View } from 'react-native'
 import { IUser } from '@/types/user.inteerface'
 
 import { useProfile } from '@/components/screens/profile/useProfile'
-import { useTypedNavigation } from '@/hooks/useTypedNavigation'
 
 const Avatars: React.FunctionComponent = () => {
 	const { setValue } = useForm<IUser>({})
 	const { user } = useProfile(setValue)
-	const { navigate } = useTypedNavigation()
 
 	return (
 		<>
@@ -47,10 +45,7 @@ const Avatars: React.FunctionComponent = () => {
 						icon={{ name: 'person-outline', type: 'ionicon' }}
 						containerStyle={{ backgroundColor: 'orange' }}
 					>
-						<Avatar.Accessory
-							size={26}
-							onPress={() => navigate('ProfileEdit')}
-						/>
+						<Avatar.Accessory size={26} />
 					</Avatar>
 				</View>
 			)}

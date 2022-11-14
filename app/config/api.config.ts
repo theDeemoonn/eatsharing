@@ -1,6 +1,6 @@
 // export const SERVER_URL = process.env.SERVER_URL //TODO: add auth url
-export const SERVER_URL = 'http://10.1.0.133:4200' /*WORK*/
-// export const SERVER_URL = 'http://192.168.1.226:4200' /*HOME*/
+// export const SERVER_URL = 'http://10.1.0.133:4200' /*WORK*/
+export const SERVER_URL = 'http://192.168.1.226:4200' /*HOME*/
 export const API_URL = `${SERVER_URL}/api`
 
 export const getAuthUrl = (string: string) => `/auth/${string}`

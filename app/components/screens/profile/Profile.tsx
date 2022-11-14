@@ -1,5 +1,5 @@
 import { MaterialCommunityIcons } from '@expo/vector-icons'
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { Pressable, Text, View } from 'react-native'
 import Animated from 'react-native-reanimated'
@@ -8,8 +8,7 @@ import { IAuthFormData } from '@/types/auth.interface'
 
 import ProfileEdit from '@/components/screens/profile/profileEdit/ProfileEdit'
 import { useProfile } from '@/components/screens/profile/useProfile'
-import { Heading, Layout, Loader, ProfileCard } from '@/components/ui'
-import Avatars from '@/components/ui/avatar/Avatar'
+import { Avatars, Heading, Layout, Loader, ProfileCard } from '@/components/ui'
 import { useScaleOnMount } from '@/hooks/styleHooks/useScaleOnMount'
 import { useAuth } from '@/hooks/useAuth'
 import { useTypedNavigation } from '@/hooks/useTypedNavigation'
@@ -25,6 +24,8 @@ const Profile: FC = () => {
 	const { styleAnimation } = useScaleOnMount()
 
 	const { navigate } = useTypedNavigation()
+
+	const [isModalVisible, setModalVisible] = useState(false)
 
 	return (
 		<Layout isHasPadding>
@@ -54,7 +55,7 @@ const Profile: FC = () => {
 
 					<Pressable
 						className='opacity-40 items-center flex-row justify-center mt-16'
-						onPress={() => navigate('ProfileEdit')}
+						onPress={() => setModalVisible(true)}
 					>
 						<MaterialCommunityIcons
 							name='account-edit-outline'
@@ -67,6 +68,10 @@ const Profile: FC = () => {
 					</Pressable>
 				</View>
 			)}
+			<ProfileEdit
+				onClose={() => setModalVisible(false)}
+				isVisible={isModalVisible}
+			/>
 		</Layout>
 	)
 }
