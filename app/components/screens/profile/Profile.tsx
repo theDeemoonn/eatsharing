@@ -1,29 +1,30 @@
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import { FC } from 'react'
 import { useForm } from 'react-hook-form'
-import { Image, Pressable, Text, View } from 'react-native'
+import { Pressable, Text, View } from 'react-native'
 import Animated from 'react-native-reanimated'
 
 import { IAuthFormData } from '@/types/auth.interface'
 
-import AuthFields from '@/components/screens/auth/AuthFields'
+import ProfileEdit from '@/components/screens/profile/profileEdit/ProfileEdit'
 import { useProfile } from '@/components/screens/profile/useProfile'
-import { Heading, Layout, Loader } from '@/components/ui'
-import Avatar from '@/components/ui/icon/avatar.jpg'
+import { Heading, Layout, Loader, ProfileCard } from '@/components/ui'
+import Avatars from '@/components/ui/avatar/Avatar'
 import { useScaleOnMount } from '@/hooks/styleHooks/useScaleOnMount'
 import { useAuth } from '@/hooks/useAuth'
+import { useTypedNavigation } from '@/hooks/useTypedNavigation'
 import { AuthService } from '@/services/auth/auth.service'
 
 const Profile: FC = () => {
 	const { setUser } = useAuth()
 
-	const { handleSubmit, setValue, control } = useForm<IAuthFormData>({
-		mode: 'onChange'
-	})
+	const { setValue } = useForm<IAuthFormData>({})
 
-	const { isLoading, onSubmit } = useProfile(setValue)
+	const { isLoading } = useProfile(setValue)
 
 	const { styleAnimation } = useScaleOnMount()
+
+	const { navigate } = useTypedNavigation()
 
 	return (
 		<Layout isHasPadding>
@@ -43,17 +44,17 @@ const Profile: FC = () => {
 				style={styleAnimation}
 				className='my-6 items-center justify-center mt-12'
 			>
-				<Image source={Avatar} className='w-40 h-40 rounded-2xl' />
+				<Avatars />
 			</Animated.View>
 			{isLoading ? (
 				<Loader />
 			) : (
 				<View className='mb-10'>
-					<AuthFields control={control} />
-					{/*<Button onPress={handleSubmit(onSubmit)}>Обновить профиль</Button>*/}
+					<ProfileCard className='mt-6' />
+
 					<Pressable
 						className='opacity-40 items-center flex-row justify-center mt-16'
-						// onPress={() => AuthService.logout().then(() => setUser(null))}
+						onPress={() => navigate('ProfileEdit')}
 					>
 						<MaterialCommunityIcons
 							name='account-edit-outline'

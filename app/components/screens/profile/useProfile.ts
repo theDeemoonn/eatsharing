@@ -3,15 +3,22 @@ import { SubmitHandler, UseFormSetValue } from 'react-hook-form'
 import Toast from 'react-native-toast-message'
 
 import { IAuthFormData } from '@/types/auth.interface'
+import { IUser } from '@/types/user.inteerface'
 
 import { UserService } from '@/services/user/user.service'
 
-export const useProfile = (setValue: UseFormSetValue<IAuthFormData>) => {
-	const { isLoading } = useQuery(['profile'], () => UserService.getProfile(), {
-		onSuccess: ({ email }) => {
-			setValue('email', email)
+export const useProfile = (setValue: UseFormSetValue<IUser>) => {
+	const { isLoading, data: user } = useQuery(
+		['profile'],
+		() => UserService.getProfile(),
+		{
+			onSuccess: ({ email, name, surname }) => {
+				setValue('email', email)
+				setValue('name', name)
+				setValue('surname', surname)
+			}
 		}
-	})
+	)
 
 	const { mutateAsync } = useMutation(
 		['update profile'],
@@ -31,5 +38,5 @@ export const useProfile = (setValue: UseFormSetValue<IAuthFormData>) => {
 		await mutateAsync(data)
 	}
 
-	return { onSubmit, isLoading }
+	return { onSubmit, isLoading, user }
 }

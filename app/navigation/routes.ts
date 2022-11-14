@@ -1,6 +1,7 @@
 import AddOrder from '@/components/screens/addOrder/AddOrder'
 import Home from '@/components/screens/home/Home'
 import Profile from '@/components/screens/profile/Profile'
+import ProfileEdit from '@/components/screens/profile/profileEdit/ProfileEdit'
 import { IRoute } from '@/navigation/navigation.types'
 
 export const routes: IRoute[] = [
@@ -20,6 +21,10 @@ export const routes: IRoute[] = [
 	{
 		name: 'AddOrder',
 		component: AddOrder
+	},
+	{
+		name: 'ProfileEdit',
+		component: ProfileEdit
 	}
 	// {
 	// 	name: 'Settings',

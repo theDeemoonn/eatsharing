@@ -6,6 +6,7 @@ export type TypeRootStackParamList = {
 	Profile: undefined
 	AddOrder: undefined
 	Settings: undefined
+	ProfileEdit: undefined
 }
 
 export interface IRoute {
