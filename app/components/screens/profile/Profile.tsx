@@ -45,7 +45,7 @@ const Profile: FC = () => {
 				style={styleAnimation}
 				className='my-6 items-center justify-center mt-12'
 			>
-				<Avatars />
+				<Avatars size={130} />
 			</Animated.View>
 			{isLoading ? (
 				<Loader />
