@@ -6,6 +6,7 @@ import Animated from 'react-native-reanimated'
 
 import { IAuthFormData } from '@/types/auth.interface'
 
+import AvatarEdit from '@/components/screens/profile/avatarEdit/AvatarEdit'
 import ProfileEdit from '@/components/screens/profile/profileEdit/ProfileEdit'
 import { useProfile } from '@/components/screens/profile/useProfile'
 import { Avatars, Heading, Layout, Loader, ProfileCard } from '@/components/ui'
@@ -27,6 +28,8 @@ const Profile: FC = () => {
 
 	const [isModalVisible, setModalVisible] = useState(false)
 
+	const [isModalVisibleAvatar, setModalVisibleAvatar] = useState(false)
+
 	return (
 		<Layout isHasPadding>
 			<View className='flex-row justify-between'>
@@ -45,7 +48,7 @@ const Profile: FC = () => {
 				style={styleAnimation}
 				className='my-6 items-center justify-center mt-12'
 			>
-				<Avatars size={130} />
+				<Avatars openEdit={() => setModalVisibleAvatar(true)} size={130} />
 			</Animated.View>
 			{isLoading ? (
 				<Loader />
@@ -71,6 +74,10 @@ const Profile: FC = () => {
 			<ProfileEdit
 				onClose={() => setModalVisible(false)}
 				isVisible={isModalVisible}
+			/>
+			<AvatarEdit
+				isVisible={isModalVisibleAvatar}
+				onClose={() => setModalVisibleAvatar(false)}
 			/>
 		</Layout>
 	)

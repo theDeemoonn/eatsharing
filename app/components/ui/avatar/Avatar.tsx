@@ -7,9 +7,8 @@ import { IUser } from '@/types/user.inteerface'
 
 import { useProfile } from '@/components/screens/profile/useProfile'
 import { IAvatar } from '@/components/ui/avatar/avatar.interface'
-import { routes } from '@/navigation/routes'
 
-const Avatars: React.FunctionComponent<IAvatar> = ({ size }) => {
+const Avatars: React.FunctionComponent<IAvatar> = ({ size, openEdit }) => {
 	const { setValue } = useForm<IUser>({})
 	const { user } = useProfile(setValue)
 
@@ -30,12 +29,7 @@ const Avatars: React.FunctionComponent<IAvatar> = ({ size }) => {
 						title={`${user?.name?.charAt(0)}${user?.surname?.charAt(0)}`}
 						containerStyle={{ backgroundColor: 'grey' }}
 					>
-						{routes.map(
-							(route, index) =>
-								route.name === 'Profile' && (
-									<Avatar.Accessory key={index} size={26} />
-								)
-						)}
+						<Avatar.Accessory size={26} onPress={openEdit} />
 					</Avatar>
 				</View>
 			) : (
@@ -52,12 +46,7 @@ const Avatars: React.FunctionComponent<IAvatar> = ({ size }) => {
 						icon={{ name: 'person-outline', type: 'ionicon' }}
 						containerStyle={{ backgroundColor: 'orange' }}
 					>
-						{routes.map(
-							(route, index) =>
-								route.name === 'Profile' && (
-									<Avatar.Accessory key={index} size={26} />
-								)
-						)}
+						<Avatar.Accessory size={26} onPress={openEdit} />
 					</Avatar>
 				</View>
 			)}

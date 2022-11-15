@@ -9,6 +9,7 @@ import { useProfile } from '@/components/screens/profile/useProfile'
 import { IProfileCard } from '@/components/ui/profileCard/profileCard.interface'
 import { TextInfo } from '@/components/ui/textInfo/TextInfo'
 import { useTypedNavigation } from '@/hooks/useTypedNavigation'
+import { phoneFormatDash } from '@/utils/phoneFormat'
 
 const ProfileCard: FC<PropsWithChildren<IProfileCard>> = ({
 	className,
@@ -44,7 +45,7 @@ const ProfileCard: FC<PropsWithChildren<IProfileCard>> = ({
 				<TextInfo
 					marginBottom={'mb-2'}
 					label={'Номер телефона'}
-					text={user?.phone}
+					text={phoneFormatDash(user?.phone!)}
 				/>
 			</View>
 			<Text className='px-7 py-3 flex-row justify-center items-center font-medium'>
