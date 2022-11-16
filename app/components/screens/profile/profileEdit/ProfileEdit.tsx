@@ -24,8 +24,11 @@ const ProfileEdit: FC<IProfileEdit> = ({ isVisible, onClose }) => {
 			<GestureRecognizer className='flex-1' onSwipeDown={onClose}>
 				<BottomSheet
 					onBackdropPress={onClose}
-					backdropStyle={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}
+					backdropStyle={{
+						backgroundColor: 'rgba(0, 0, 0, 0.5)'
+					}}
 					modalProps={{
+						presentationStyle: 'overFullScreen',
 						animationType: 'slide',
 						transparent: true,
 						onRequestClose: onClose
@@ -34,7 +37,7 @@ const ProfileEdit: FC<IProfileEdit> = ({ isVisible, onClose }) => {
 				>
 					<View className='justify-end flex-row'>
 						<Pressable
-							className='flex-row justify-center mx-4 my-2 border border-gray-300 rounded-full max-w-[40px] max-h-[40px]'
+							className='flex-row justify-center mx-4 my-2 border border-gray-200 rounded-full max-w-[40px] max-h-[40px]'
 							onPress={onClose}
 						>
 							<MaterialCommunityIcons
@@ -48,7 +51,7 @@ const ProfileEdit: FC<IProfileEdit> = ({ isVisible, onClose }) => {
 
 					<Layout
 						isHasPadding
-						className=' flex-1 bg-white min-h-[500] rounded-t-lg shadow-lg mx-1'
+						className=' flex-1 bg-white min-h-[500] rounded-lg shadow-lg mx-1'
 					>
 						<Heading className='mt-6' title={'Редактирование профиля'} />
 

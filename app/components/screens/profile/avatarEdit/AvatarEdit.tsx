@@ -35,7 +35,7 @@ const AvatarEdit: FC<IAvatarEdit> = ({ onClose, isVisible, ...props }) => {
 				>
 					<View className='justify-end flex-row'>
 						<Pressable
-							className='flex-row justify-center mx-4 my-2 border border-gray-300 rounded-full max-w-[40px] max-h-[40px]'
+							className='flex-row justify-center mx-4 my-2 border border-gray-200 rounded-full max-w-[40px] max-h-[40px]'
 							onPress={onClose}
 						>
 							<MaterialCommunityIcons
@@ -49,9 +49,9 @@ const AvatarEdit: FC<IAvatarEdit> = ({ onClose, isVisible, ...props }) => {
 
 					<Layout
 						isHasPadding
-						className=' flex-1 bg-white min-h-[500] rounded-t-lg shadow-lg mx-1'
+						className=' flex-1 bg-white min-h-[500] rounded-lg shadow-lg mx-1'
 					>
-						<Heading className='mt-6' title={'Редактирование автара'} />
+						<Heading className='mt-6' title={'Редактирование аватара'} />
 
 						<View className='mt-6'>
 							<Button onPress={handleSubmit(onSubmit)}>Обновить аватар</Button>
