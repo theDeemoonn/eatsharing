@@ -2,11 +2,11 @@ import { MaterialCommunityIcons } from '@expo/vector-icons'
 import { FC } from 'react'
 import { Pressable } from 'react-native'
 
-import { color } from '@/components/ui/color'
 import {
 	IMenuItem,
 	TypeNavigation
 } from '@/components/ui/layout/bottomMenu/menu.interface'
+import { style } from '@/components/ui/style'
 
 interface IMenuItemProps {
 	item: IMenuItem
@@ -22,7 +22,7 @@ const MenuItem: FC<IMenuItemProps> = ({ currentRoute, item, nav }) => {
 			<MaterialCommunityIcons
 				name={item.iconName}
 				size={30}
-				color={isActive ? color.primary : color.gray}
+				color={isActive ? style.primary : style.gray}
 			/>
 		</Pressable>
 	)

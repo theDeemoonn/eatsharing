@@ -8,7 +8,15 @@ import { IUser } from '@/types/user.inteerface'
 import { useProfile } from '@/components/screens/profile/useProfile'
 import { IAvatar } from '@/components/ui/avatar/avatar.interface'
 
-const Avatars: React.FunctionComponent<IAvatar> = ({ size, openEdit }) => {
+const Avatars: React.FunctionComponent<IAvatar> = ({
+	size,
+	openEdit,
+	onPress,
+	rounded,
+	source,
+	isShowEdit,
+	avatarStyle
+}) => {
 	const { setValue } = useForm<IUser>({})
 	const { user } = useProfile(setValue)
 
@@ -19,17 +27,21 @@ const Avatars: React.FunctionComponent<IAvatar> = ({ size, openEdit }) => {
 					style={{
 						flexDirection: 'row',
 						justifyContent: 'space-around',
-						marginBottom: 40
+						marginBottom: 40,
+						marginRight: 20
 					}}
 				>
 					<Avatar
 						size={size}
-						rounded
-						source={{ uri: user?.avatar }}
+						rounded={rounded}
+						onPress={onPress}
+						avatarStyle={{ ...avatarStyle }}
+						// source={{ uri: user?.avatar }}
+						source={source}
 						title={`${user?.name?.charAt(0)}${user?.surname?.charAt(0)}`}
 						containerStyle={{ backgroundColor: 'grey' }}
 					>
-						<Avatar.Accessory size={26} onPress={openEdit} />
+						{isShowEdit && <Avatar.Accessory size={26} onPress={openEdit} />}
 					</Avatar>
 				</View>
 			) : (

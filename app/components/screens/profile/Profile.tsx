@@ -20,7 +20,7 @@ const Profile: FC = () => {
 
 	const { setValue } = useForm<IAuthFormData>({})
 
-	const { isLoading } = useProfile(setValue)
+	const { isLoading, user } = useProfile(setValue)
 
 	const { styleAnimation } = useScaleOnMount()
 
@@ -46,9 +46,15 @@ const Profile: FC = () => {
 			</View>
 			<Animated.View
 				style={styleAnimation}
-				className='my-6 items-center justify-center mt-12'
+				className='my-6 items-center justify-center mt-12 ml-5'
 			>
-				<Avatars openEdit={() => setModalVisibleAvatar(true)} size={130} />
+				<Avatars
+					isShowEdit={true}
+					rounded={true}
+					openEdit={() => setModalVisibleAvatar(true)}
+					size={130}
+					source={{ uri: user?.avatar }}
+				/>
 			</Animated.View>
 			{isLoading ? (
 				<Loader />

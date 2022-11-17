@@ -38,6 +38,13 @@ export const UserService = {
 			data
 		})
 	},
+	async updateAvatar(data: IUser) {
+		return request<string>({
+			url: getUserUrl('profile/avatar'),
+			method: 'PUT',
+			data
+		})
+	},
 	async deleteUser(_id: string) {
 		return request<string>({
 			url: getUserUrl(`${_id}`),

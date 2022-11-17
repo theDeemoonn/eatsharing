@@ -1,65 +1,159 @@
-import { MaterialCommunityIcons } from '@expo/vector-icons'
 import { BottomSheet } from '@rneui/themed'
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { Pressable, View } from 'react-native'
-import { SafeAreaProvider } from 'react-native-safe-area-context'
+import { Pressable, ScrollView, View } from 'react-native'
 import GestureRecognizer from 'react-native-swipe-gestures'
 
 import { IUser } from '@/types/user.inteerface'
 
 import { IAvatarEdit } from '@/components/screens/profile/avatarEdit/avatarEdit.interface'
-import { useProfile } from '@/components/screens/profile/useProfile'
-import { Button, Heading, Layout } from '@/components/ui'
-import { useAuth } from '@/hooks/useAuth'
+import { useAvatar } from '@/components/screens/profile/avatarEdit/useAvatar'
+import { Avatars, Button, Heading, Layout } from '@/components/ui'
+import { getModalStyle, modalStyle } from '@/components/ui/style'
+
+type AvatarData = {
+	image_url: string
+}
+
+const dataList: AvatarData[] = [
+	{
+		image_url:
+			'https://cdn.pixabay.com/photo/2017/03/01/22/18/avatar-2109804_1280.png'
+	},
+	{
+		image_url: 'https://randomuser.me/api/portraits/men/36.jpg'
+	},
+	{
+		image_url:
+			'https://cdn.pixabay.com/photo/2019/11/03/20/11/portrait-4599553__340.jpg'
+	},
+	{
+		image_url:
+			'https://cdn.pixabay.com/photo/2014/09/17/20/03/profile-449912__340.jpg'
+	},
+	{
+		image_url:
+			'https://cdn.pixabay.com/photo/2020/09/18/05/58/lights-5580916__340.jpg'
+	},
+	{
+		image_url:
+			'https://cdn.pixabay.com/photo/2016/11/21/12/42/beard-1845166_1280.jpg'
+	},
+	{
+		image_url:
+			'https://cdn.pixabay.com/photo/2012/04/18/18/07/user-37448_1280.png'
+	},
+	{
+		image_url: 'https://randomuser.me/api/portraits/men/36.jpg'
+	},
+	{
+		image_url:
+			'https://cdn.pixabay.com/photo/2019/11/03/20/11/portrait-4599553__340.jpg'
+	},
+	{
+		image_url:
+			'https://cdn.pixabay.com/photo/2014/09/17/20/03/profile-449912__340.jpg'
+	},
+	{
+		image_url:
+			'https://cdn.pixabay.com/photo/2020/09/18/05/58/lights-5580916__340.jpg'
+	},
+	{
+		image_url:
+			'https://cdn.pixabay.com/photo/2016/11/21/12/42/beard-1845166_1280.jpg'
+	}
+]
 
 const AvatarEdit: FC<IAvatarEdit> = ({ onClose, isVisible, ...props }) => {
-	const { handleSubmit, setValue, control } = useForm<IUser>({
+	const { handleSubmit, setValue } = useForm<IUser>({
 		mode: 'onChange'
 	})
-	const { setUser } = useAuth()
 
-	const { isLoading, onSubmit } = useProfile(setValue)
+	const { onSubmit, user } = useAvatar(setValue)
+
+	const [selected, setSelected] = useState<string>(user?.avatar || '')
+
 	return (
-		<SafeAreaProvider>
-			<GestureRecognizer className='flex-1' onSwipeDown={onClose}>
-				<BottomSheet
-					onBackdropPress={onClose}
-					backdropStyle={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}
-					modalProps={{
-						animationType: 'slide',
-						transparent: true,
-						onRequestClose: onClose
+		<GestureRecognizer
+			onSwipeDown={onClose}
+			config={{
+				velocityThreshold: 0.3,
+				directionalOffsetThreshold: 80
+			}}
+			style={{
+				flex: 1
+			}}
+		>
+			<BottomSheet
+				backdropStyle={{
+					backgroundColor: 'rgba(0, 0, 0, 0.5)'
+				}}
+				onBackdropPress={onClose}
+				isVisible={isVisible}
+				{...props}
+			>
+				<Layout
+					style={{
+						...getModalStyle(modalStyle)
 					}}
-					isVisible={isVisible}
 				>
-					<View className='justify-end flex-row'>
-						<Pressable
-							className='flex-row justify-center mx-4 my-2 border border-gray-200 rounded-full max-w-[40px] max-h-[40px]'
-							onPress={onClose}
-						>
-							<MaterialCommunityIcons
-								backgroundColor='transparent'
-								name='close'
-								size={24}
-								color='white'
-							/>
-						</Pressable>
-					</View>
-
-					<Layout
-						isHasPadding
-						className=' flex-1 bg-white min-h-[500] rounded-lg shadow-lg mx-1'
+					<View
+						style={{
+							flex: 1,
+							paddingHorizontal: 20,
+							paddingVertical: 20
+						}}
 					>
-						<Heading className='mt-6' title={'Редактирование аватара'} />
-
-						<View className='mt-6'>
-							<Button onPress={handleSubmit(onSubmit)}>Обновить аватар</Button>
+						<Heading className='pb-3' title='Редактирование аватара' />
+						<View
+							style={{
+								flexDirection: 'row',
+								justifyContent: 'space-between',
+								alignItems: 'flex-start'
+							}}
+						>
+							<Avatars
+								rounded={true}
+								size={100}
+								source={selected ? { uri: selected } : { uri: user?.avatar }}
+							/>
+							<View
+								style={{
+									marginTop: 15,
+									flexDirection: 'row',
+									alignItems: 'center',
+									justifyContent: 'flex-end'
+								}}
+							>
+								<Button
+									style={{ marginRight: 10 }}
+									onPress={handleSubmit(onSubmit)}
+								>
+									Сохранить
+								</Button>
+							</View>
 						</View>
-					</Layout>
-				</BottomSheet>
-			</GestureRecognizer>
-		</SafeAreaProvider>
+					</View>
+					<ScrollView
+						horizontal
+						showsHorizontalScrollIndicator={false}
+						style={{ flex: 1 }}
+					>
+						{dataList.map((item, index) => (
+							<Pressable key={index}>
+								<Avatars
+									onPress={() => setSelected(item.image_url)}
+									rounded={true}
+									key={index}
+									size={60}
+									source={{ uri: item.image_url }}
+								/>
+							</Pressable>
+						))}
+					</ScrollView>
+				</Layout>
+			</BottomSheet>
+		</GestureRecognizer>
 	)
 }
 
