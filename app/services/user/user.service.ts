@@ -40,7 +40,7 @@ export const UserService = {
 	},
 	async updateAvatar(data: IUser) {
 		return request<string>({
-			url: getUserUrl('profile/avatar'),
+			url: getUserUrl('profile'),
 			method: 'PUT',
 			data
 		})

@@ -77,14 +77,19 @@ const Profile: FC = () => {
 					</Pressable>
 				</View>
 			)}
-			<ProfileEdit
-				onClose={() => setModalVisible(false)}
-				isVisible={isModalVisible}
-			/>
-			<AvatarEdit
-				isVisible={isModalVisibleAvatar}
-				onClose={() => setModalVisibleAvatar(false)}
-			/>
+			{isModalVisible && (
+				<ProfileEdit
+					onClose={() => setModalVisible(false)}
+					isVisible={isModalVisible}
+				/>
+			)}
+
+			{isModalVisibleAvatar && (
+				<AvatarEdit
+					isVisible={isModalVisibleAvatar}
+					onClose={() => setModalVisibleAvatar(false)}
+				/>
+			)}
 		</Layout>
 	)
 }

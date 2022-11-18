@@ -65,13 +65,16 @@ const dataList: AvatarData[] = [
 ]
 
 const AvatarEdit: FC<IAvatarEdit> = ({ onClose, isVisible, ...props }) => {
-	const { handleSubmit, setValue } = useForm<IUser>({
-		mode: 'onChange'
-	})
+	const { setValue } = useForm<IUser>()
 
 	const { onSubmit, user } = useAvatar(setValue)
 
 	const [selected, setSelected] = useState<string>(user?.avatar || '')
+
+	const onAvatarSubmit = () => {
+		onSubmit({ avatar: selected } as IUser)
+		onClose()
+	}
 
 	return (
 		<GestureRecognizer
@@ -127,7 +130,7 @@ const AvatarEdit: FC<IAvatarEdit> = ({ onClose, isVisible, ...props }) => {
 							>
 								<Button
 									style={{ marginRight: 10 }}
-									onPress={handleSubmit(onSubmit)}
+									onPress={selected ? onAvatarSubmit : onClose}
 								>
 									Сохранить
 								</Button>
