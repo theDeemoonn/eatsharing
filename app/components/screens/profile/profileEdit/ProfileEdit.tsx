@@ -1,4 +1,3 @@
-import { MaterialCommunityIcons } from '@expo/vector-icons'
 import { BottomSheet } from '@rneui/themed'
 import { FC } from 'react'
 import { useForm } from 'react-hook-form'
@@ -40,14 +39,7 @@ const ProfileEdit: FC<IProfileEdit> = ({ isVisible, onClose }) => {
 						<Pressable
 							className='flex-row justify-center mx-4 my-2 max-w-[40px] max-h-[40px]'
 							onPress={onClose}
-						>
-							<MaterialCommunityIcons
-								backgroundColor='transparent'
-								name='close'
-								size={24}
-								color='white'
-							/>
-						</Pressable>
+						></Pressable>
 					</View>
 
 					<Layout
