@@ -1,5 +1,11 @@
 export const style = {
 	primary: '#2f95dc',
+	blue_100: '#f0f9ff',
+	blue_200: '#e0f2fe',
+	blue_300: '#bae6fd',
+	blue_400: '#7dd3fc',
+	blue_500: '#38bdf8',
+	blue_600: '#0ea5e9',
 	secondary: '#6c757d',
 	success: '#28a745',
 	danger: '#dc3545',
