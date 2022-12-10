@@ -16,6 +16,7 @@ export const style = {
 	white: '#fff',
 	black: '#000',
 	transparent: 'transparent',
+	placeholder: '#BDC3D1',
 	gray: '#6c757d',
 	gray_100: '#f8f9fa',
 	gray_200: '#e9ecef',

@@ -9,8 +9,8 @@ export const request = async <T>(config: AxiosRequestConfig) => {
 	const onError = (error: AxiosError<T>) => {
 		Toast.show({
 			type: 'error',
-			text1: 'Request Error',
-			text2: errorCatch(error)
+			text1: 'Ошибка',
+			text2: errorCatch(error) || 'Что-то пошло не так. Попробуйте еще раз' //TODO: add error message
 		})
 
 		return Promise.reject(error)

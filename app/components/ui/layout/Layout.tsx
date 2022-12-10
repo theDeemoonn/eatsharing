@@ -16,10 +16,10 @@ const Layout: FC<PropsWithChildren<ILayout>> = ({
 		<SafeAreaView className='flex-1'>
 			<View
 				className={cn('flex-1', className, {
-					'px-6': isHasPadding
+					'px-4': isHasPadding
 				})}
 				style={{
-					paddingTop: Platform.OS === 'ios' ? top / 6 : top * 1.7,
+					paddingTop: Platform.OS === 'ios' ? top / 6 : top * 1.2,
 					...style
 				}}
 			>

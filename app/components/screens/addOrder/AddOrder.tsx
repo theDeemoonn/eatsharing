@@ -1,7 +1,6 @@
 import { FC } from 'react'
 import { View } from 'react-native'
 
-import { IAddOrder } from '@/components/screens/addOrder/addorder.interface'
 import { Heading, Layout } from '@/components/ui'
 import Search from '@/components/ui/search/Search'
 
@@ -15,7 +14,11 @@ const onSubmit = (data: any) => {
 	console.log(data)
 }
 
-const AddOrder: FC<IAddOrder> = ({ onClose }) => {
+const onClose = () => {
+	console.log('onClose')
+}
+
+const AddOrder: FC = () => {
 	return (
 		<Layout isHasPadding>
 			<View className='flex-row justify-between'>

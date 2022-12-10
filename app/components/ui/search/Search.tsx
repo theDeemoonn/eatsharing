@@ -17,7 +17,7 @@ const Search: React.FC<ISearch> = ({ placeholder, onSearch, onClose }) => {
 	}
 
 	return (
-		<GestureRecognizer onLayout={onClose}>
+		<GestureRecognizer>
 			<View className='flex-row justify-center items-center'>
 				<View className='flex-row justify-center items-center'>
 					<Pressable
@@ -46,6 +46,7 @@ const Search: React.FC<ISearch> = ({ placeholder, onSearch, onClose }) => {
 							value={search}
 							onChangeText={handleSearch}
 							onBlur={() => setIsFocused(false)}
+							onPressIn={onClose}
 						/>
 					)}
 				</View>
