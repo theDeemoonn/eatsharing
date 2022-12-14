@@ -2,6 +2,8 @@ import * as React from 'react'
 import { Dimensions, StatusBar, StyleSheet, Text, View } from 'react-native'
 import { SceneMap, TabBar, TabView } from 'react-native-tab-view'
 
+import RestaurantView from '../restaurantView/RestaurantView'
+
 import { Loader } from '@/components/ui'
 import Card from '@/components/ui/card/Card'
 import { style } from '@/components/ui/style'
@@ -10,7 +12,12 @@ const FirstRoute = () => (
 	<View style={[styles.scene, { backgroundColor: '#ff4081' }]} />
 )
 
-const SecondRoute = () => <Card title={'Ресторан'} description={'Цена'} />
+const SecondRoute = () => (
+	<>
+		<Card title={'Ресторан'} description={'Цена'} />
+		<RestaurantView />
+	</>
+)
 
 const LazyPlaceholder = () => (
 	<View style={styles.scene}>

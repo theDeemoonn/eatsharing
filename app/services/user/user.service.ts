@@ -1,4 +1,5 @@
 import { IAuthFormData } from '@/types/auth.interface'
+import { IRestaurants } from '@/types/restaurant.interface'
 import { IUser } from '@/types/user.inteerface'
 
 import { getUserUrl } from '@/config/api.config'
@@ -50,11 +51,19 @@ export const UserService = {
 			url: getUserUrl(`${_id}`),
 			method: 'DELETE'
 		})
+	},
+
+	async toggleFavorite(restaurantId: string) {
+		return request<string>({
+			url: getUserUrl('favorite'),
+			method: 'PUT',
+			data: { restaurantId }
+		})
+	},
+	async getFavorites() {
+		return request<IRestaurants[]>({
+			url: getUserUrl('profile/favorites'),
+			method: 'GET'
+		})
 	}
-	// async getFavorites() {
-	// 	return request<IUser>({
-	// 		url: getUserUrl('profile/favorites'),
-	// 		method: 'GET'
-	// 	})
-	// },
 }

@@ -8,4 +8,5 @@ export interface IUser {
 	surname: string
 	interests: string[]
 	avatar: string
+	favorite: string[]
 }
