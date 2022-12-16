@@ -18,7 +18,7 @@ const BlurButton: FC<PropsWithChildren<IBlurButton>> = ({
 	return (
 		<Pressable {...rest}>
 			<BlurView
-				intensity={22}
+				intensity={8}
 				tint='light'
 				className={cn(
 					'items-center justify-center overflow-hidden',

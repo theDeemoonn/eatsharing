@@ -1,7 +1,8 @@
 //icon search expand to input field animation
 import { MaterialCommunityIcons } from '@expo/vector-icons'
+import { SearchBar } from '@rneui/themed'
 import React, { useState } from 'react'
-import { Pressable, TextInput, View } from 'react-native'
+import { Pressable, View } from 'react-native'
 import GestureRecognizer from 'react-native-swipe-gestures'
 
 import { ISearch } from '@/components/ui/search/search.interface'
@@ -17,36 +18,32 @@ const Search: React.FC<ISearch> = ({ placeholder, onSearch, onClose }) => {
 	}
 
 	return (
-		<GestureRecognizer>
+		<GestureRecognizer onSwipeUp={() => setIsFocused(false)}>
 			<View className='flex-row justify-center items-center'>
 				<View className='flex-row justify-center items-center'>
 					<Pressable
 						className='flex-row justify-center items-center'
 						onPress={() => setIsFocused(true)}
 					>
-						<MaterialCommunityIcons
-							name='magnify'
-							size={24}
-							color={isFocused ? style.primary : style.gray_500}
-						/>
+						{!isFocused ? (
+							<MaterialCommunityIcons
+								name='magnify'
+								size={24}
+								color={style.gray_500}
+							/>
+						) : null}
 					</Pressable>
+					{/*//TODO: добавить анимацию и алгоритм поиска*/}
 					{isFocused && (
-						<TextInput
-							style={{
-								width: 200,
-								height: 40,
-								borderBottomWidth: 1,
-								borderBottomColor: style.primary,
-								marginLeft: 10,
-								paddingLeft: 10,
-								transform: [{ translateY: -5 }]
-							}}
-							className='flex-1'
-							placeholder={placeholder}
-							value={search}
+						<SearchBar
 							onChangeText={handleSearch}
-							onBlur={() => setIsFocused(false)}
-							onPressIn={onClose}
+							autoFocus
+							containerStyle={{
+								backgroundColor: 'transparent'
+							}}
+							cancelButtonTitle='Отмена'
+							platform='ios'
+							onCancel={() => setIsFocused(false)}
 						/>
 					)}
 				</View>

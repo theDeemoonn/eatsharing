@@ -1,3 +1,4 @@
+import { Skeleton } from '@rneui/themed'
 import { LinearGradient } from 'expo-linear-gradient'
 import React, { FC } from 'react'
 import {
@@ -11,7 +12,6 @@ import {
 import FavoriteButton from '../favoriteButton/FavoriteButton'
 
 import basturma from './basturma.jpg'
-import { Loader } from '@/components/ui'
 import { IRestaurant } from '@/components/ui/restaurantView/restaurantView.interface'
 
 const RestaurantView: FC<IRestaurant> = ({ loading, children, onPress }) => {
@@ -21,7 +21,13 @@ const RestaurantView: FC<IRestaurant> = ({ loading, children, onPress }) => {
 	return (
 		<Pressable>
 			{loading ? (
-				<Loader />
+				<Skeleton
+					LinearGradientComponent={LinearGradient}
+					animation='wave'
+					width={200}
+					height={120}
+					style={{ borderRadius: 12 }}
+				/>
 			) : (
 				<View style={styles.container}>
 					<ImageBackground source={basturma} style={styles.image}>

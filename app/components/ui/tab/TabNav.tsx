@@ -1,5 +1,16 @@
+import { Badge } from '@rneui/themed'
 import * as React from 'react'
-import { Dimensions, StatusBar, StyleSheet, Text, View } from 'react-native'
+import { useState } from 'react'
+import {
+	Dimensions,
+	Platform,
+	RefreshControl,
+	ScrollView,
+	StatusBar,
+	StyleSheet,
+	Text,
+	View
+} from 'react-native'
 import { SceneMap, TabBar, TabView } from 'react-native-tab-view'
 
 import RestaurantView from '../restaurantView/RestaurantView'
@@ -8,17 +19,6 @@ import { Loader } from '@/components/ui'
 import Card from '@/components/ui/card/Card'
 import { style } from '@/components/ui/style'
 
-const FirstRoute = () => (
-	<View style={[styles.scene, { backgroundColor: '#ff4081' }]} />
-)
-
-const SecondRoute = () => (
-	<>
-		<Card title={'Ресторан'} description={'Цена'} />
-		<RestaurantView />
-	</>
-)
-
 const LazyPlaceholder = () => (
 	<View style={styles.scene}>
 		<Loader />
@@ -26,11 +26,38 @@ const LazyPlaceholder = () => (
 )
 
 export const TabViewExample = () => {
-	const [index, setIndex] = React.useState(0)
-	const [routes] = React.useState([
+	const wait = (timeout: number | undefined) => {
+		return new Promise(resolve => setTimeout(resolve, timeout))
+	}
+
+	const [index, setIndex] = useState(0)
+	const [routes] = useState([
 		{ key: 'first', title: 'First', name: 'Открытые' },
 		{ key: 'second', title: 'Second', name: 'Мои заказы' }
 	])
+	const [refreshing, setRefreshing] = useState(false)
+	const onRefresh = React.useCallback(() => {
+		setRefreshing(true)
+		wait(2000).then(() => setRefreshing(false))
+	}, [])
+	const FirstRoute = () => (
+		<View style={[styles.scene, { backgroundColor: '#ff4081' }]} />
+	)
+
+	const SecondRoute = () => (
+		<>
+			<ScrollView
+				alwaysBounceVertical
+				refreshControl={
+					<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+				}
+			>
+				<Card title={'Ресторан'} description={'Цена'} />
+
+				<RestaurantView />
+			</ScrollView>
+		</>
+	)
 
 	const renderScene = SceneMap({
 		first: FirstRoute,
@@ -49,6 +76,28 @@ export const TabViewExample = () => {
 							<Text style={focused ? styles.focused : styles.unfocused}>
 								{route.name}
 							</Text>
+							{route.key === 'second' && Platform.OS === 'ios' && (
+								<Badge
+									value={focused ? 3 : null}
+									status='primary'
+									containerStyle={
+										focused
+											? { position: 'absolute', top: 1, right: 9 }
+											: { position: 'absolute', top: 1, right: 30 }
+									}
+								/>
+							)}
+							{route.key === 'second' && Platform.OS === 'android' && (
+								<Badge
+									value={focused ? 3 : null}
+									status='primary'
+									containerStyle={
+										focused
+											? { position: 'absolute', top: 1, right: -10 }
+											: { position: 'absolute', top: 1, right: 13 }
+									}
+								/>
+							)}
 						</View>
 					)}
 					bounces={true}

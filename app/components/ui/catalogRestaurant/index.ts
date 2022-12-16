@@ -1,1 +1,1 @@
-export { default as RestaurantCatalog } from './RestaurantCatalog'
+// export { default as RestaurantCatalog } from './RestaurantCatalog'
