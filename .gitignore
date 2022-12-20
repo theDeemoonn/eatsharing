@@ -3,6 +3,8 @@ node_modules/
 dist/
 .idea
 .fleet
+.vscode
+.expo-shared
 npm-debug.*
 *.jks
 *.p8
