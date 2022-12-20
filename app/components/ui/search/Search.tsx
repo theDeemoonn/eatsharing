@@ -8,7 +8,7 @@ import GestureRecognizer from 'react-native-swipe-gestures'
 import { ISearch } from '@/components/ui/search/search.interface'
 import { style } from '@/components/ui/style'
 
-const Search: React.FC<ISearch> = ({ placeholder, onSearch, onClose }) => {
+const Search: React.FC<ISearch> = ({ placeholder, onSearch }) => {
 	const [search, setSearch] = useState('')
 	const [isFocused, setIsFocused] = useState(false)
 
@@ -33,10 +33,12 @@ const Search: React.FC<ISearch> = ({ placeholder, onSearch, onClose }) => {
 							/>
 						) : null}
 					</Pressable>
-					{/*//TODO: добавить анимацию и алгоритм поиска*/}
+					{/* //TODO: добавить анимацию и алгоритм поиска */}
 					{isFocused && (
 						<SearchBar
+							placeholder={placeholder}
 							onChangeText={handleSearch}
+							value={search}
 							autoFocus
 							containerStyle={{
 								backgroundColor: 'transparent'

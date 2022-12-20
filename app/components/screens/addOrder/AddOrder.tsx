@@ -14,10 +14,6 @@ const onSubmit = (data: any) => {
 	console.log(data)
 }
 
-const onClose = () => {
-	console.log('onClose')
-}
-
 const AddOrder: FC = () => {
 	return (
 		<Layout isHasPadding>
@@ -26,7 +22,7 @@ const AddOrder: FC = () => {
 					className='flex-auto transform translate-x-1 transform -translate-y-1'
 					title={'Добавить заказ'}
 				/>
-				<Search placeholder='Поиск' onSearch={onSubmit} onClose={onClose} />
+				<Search placeholder='Поиск' onSearch={onSubmit} />
 			</View>
 		</Layout>
 	)
