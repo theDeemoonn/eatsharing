@@ -10,6 +10,7 @@ import AvatarEdit from '@/components/screens/profile/avatarEdit/AvatarEdit'
 import ProfileEdit from '@/components/screens/profile/profileEdit/ProfileEdit'
 import { useProfile } from '@/components/screens/profile/useProfile'
 import { Avatars, Heading, Layout, Loader, ProfileCard } from '@/components/ui'
+import { TextInfo } from '@/components/ui/textInfo/TextInfo'
 import { useScaleOnMount } from '@/hooks/styleHooks/useScaleOnMount'
 import { useAuth } from '@/hooks/useAuth'
 import { useTypedNavigation } from '@/hooks/useTypedNavigation'
@@ -56,11 +57,18 @@ const Profile: FC = () => {
 					source={{ uri: user?.avatar }}
 				/>
 			</Animated.View>
+
 			{isLoading ? (
 				<Loader />
 			) : (
 				<View className='mb-10'>
 					<ProfileCard className='mt-6' />
+					<View className='border-t border-gray-200 bg-white rounded-xl mt-6 mb-10'>
+						<Text className='text-black text-center text-lg py-2 font-medium mr-2'>
+							Описание
+						</Text>
+						<TextInfo className={'px-4 py-4'} text={user?.description} />
+					</View>
 
 					<Pressable
 						className='opacity-40 items-center flex-row justify-center mt-16'

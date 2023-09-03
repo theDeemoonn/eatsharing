@@ -21,6 +21,7 @@ const ProfileCard: FC<PropsWithChildren<IProfileCard>> = ({
 	const { setValue } = useForm<IUser>({})
 	const { user } = useProfile(setValue)
 	const { navigate } = useTypedNavigation()
+	console.log('user', user)
 	return (
 		<View
 			className='border-t border-gray-200 bg-white rounded-xl min-h-[170]'
@@ -48,14 +49,14 @@ const ProfileCard: FC<PropsWithChildren<IProfileCard>> = ({
 					text={phoneFormatDash(user?.phone!)}
 				/>
 			</View>
-			<Text className='px-7 py-3 flex-row justify-center items-center font-medium'>
+			<Text className='px-4 py-3 flex-row justify-center items-center font-medium'>
 				Интересы
 			</Text>
 			{user?.interests?.map((interest, index) => (
 				<TextInfo
 					className='py-1 flex-row justify-center'
 					key={index}
-					text={interest}
+					text={interest.value}
 				/>
 			))}
 		</View>

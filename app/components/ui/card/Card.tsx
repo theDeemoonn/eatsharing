@@ -30,7 +30,7 @@ const Card: FC<ICard> = ({ title, description, className }) => {
 			{/*	<View key={String(index)}>{selectAvatar(user, index, arr)}</View>*/}
 			{/*))}*/}
 			{user && (
-				<View className='justify-center items-center flex-row'>
+				<View className='justify-center items-center px-6 flex-row'>
 					{selectAvatar(user, 0, users)}
 				</View>
 			)}

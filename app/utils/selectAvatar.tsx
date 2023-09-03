@@ -1,3 +1,4 @@
+import React from 'react'
 import { Text, View } from 'react-native'
 
 import { IUser } from '@/types/user.inteerface'
@@ -8,21 +9,19 @@ import { style } from '@/components/ui/style'
 
 //TODO: проверить необходимость этого компонента
 const selectAvatar = (user: IUser, index: number, arr: any[]) => {
-	let block: JSX.Element | null = (
+	let block: React.JSX.Element | null = (
 		<View
+			className={
+				'absolute flex w-6 h-6 rounded-full justify-center items-center'
+			}
 			style={{
-				position: 'absolute',
-				left: `${28 * index}px`,
-				display: 'flex',
-				alignItems: 'center',
-				justifyContent: 'center',
-				width: '28px',
-				height: '28px',
+				// left: `${28 * index}px`,
+
 				backgroundColor: style.placeholder
 				// borderRadius: '50%',
 			}}
 		>
-			{/*<Text>{`${user?.name?.charAt(0)}${user?.surname?.charAt(0)}`}</Text>*/}
+			<Text>{`${user?.name?.charAt(0)}${user?.surname?.charAt(0)}`}</Text>
 		</View>
 	)
 
@@ -44,14 +43,12 @@ const selectAvatar = (user: IUser, index: number, arr: any[]) => {
 	if (index + 1 > 5) {
 		block = (
 			<View
+				className={
+					'absolute flex w-6 h-6 rounded-full justify-center items-center'
+				}
 				style={{
-					position: 'absolute',
-					left: `${28 * index}px`,
-					display: 'flex',
-					alignItems: 'center',
-					justifyContent: 'center',
-					width: '28px',
-					height: '28px',
+					// left: `${28 * index}px`,
+
 					backgroundColor: style.white
 					// borderRadius: '50%',
 				}}

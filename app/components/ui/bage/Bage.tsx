@@ -24,12 +24,12 @@ const styles = StyleSheet.create({
 		inset: `${Bage.propTypes?.inset}` || 0,
 		// backgroundColor: props.theme.colors.red,
 		// borderRadius: 9999,
-		minWidth: `${Bage.propTypes?.size}` || '20px',
-		minHeight: `${Bage.propTypes?.size}` || '24px',
+		// minWidth: `${Bage.propTypes?.size}` || '20px',
+		// minHeight: `${Bage.propTypes?.size}` || '24px',
 		display: 'flex',
 		justifyContent: 'center',
-		alignItems: 'center',
-		padding: `${Bage.propTypes?.padding}` || '0px'
+		alignItems: 'center'
+		// padding: `${Bage.propTypes?.padding}` || '0px'
 	},
 
 	textContainer: {

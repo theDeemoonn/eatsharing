@@ -1,12 +1,53 @@
+export enum UserRole {
+	USER = 'user',
+	ADMIN = 'admin',
+	EXECUTOR = 'executor'
+}
+
 export interface IUser {
-	_id: string
+	id: number
 	email: string
 	password: string
-	createAt: string
-	name: string
-	phone: string
 	surname: string
-	interests: string[]
+	name: string
+	age: number
+	phone: number
+	description: string
 	avatar: string
-	favorite: string[]
+	banned: boolean
+	banReason: string
+	createdAt: string
+	updatedAt: string
+	roles: Role[]
+	interests: Interest[]
+	product: Product[]
+}
+
+export interface Product {
+	id: number
+	title: string
+	price: number
+	description: string
+	category: string
+	date: string
+}
+
+export interface Role {
+	id: number
+	value: string
+	description: string
+	createdAt: string
+	updatedAt: string
+	UserRoles: UserRoles
+}
+
+export interface UserRoles {
+	id: number
+	roleID: number
+	userID: number
+}
+
+export interface Interest {
+	id: number
+	value: string
 }

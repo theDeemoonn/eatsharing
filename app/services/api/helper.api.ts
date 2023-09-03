@@ -10,7 +10,7 @@ export const getNewTokens = async () => {
 	try {
 		const refreshToken = await getItemAsync(EnumSecureStoreKeys.REFRESH_TOKEN)
 		const response = await axios.post<string, { data: IAuthResponse }>(
-			API_URL + getAuthUrl('login/access-token'), //TODO: add refresh token url
+			API_URL + getAuthUrl('login/accessToken'), //TODO: add refresh token url
 			{ refreshToken },
 			{
 				headers: {

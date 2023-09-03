@@ -1,6 +1,7 @@
 import { Badge } from '@rneui/themed'
 import * as React from 'react'
 import { useState } from 'react'
+import { useForm } from 'react-hook-form'
 import {
 	Dimensions,
 	Platform,
@@ -13,8 +14,11 @@ import {
 } from 'react-native'
 import { SceneMap, TabBar, TabView } from 'react-native-tab-view'
 
+import { IUser } from '@/types/user.inteerface'
+
 import RestaurantView from '../restaurantView/RestaurantView'
 
+import { useProfile } from '@/components/screens/profile/useProfile'
 import { Loader } from '@/components/ui'
 import Card from '@/components/ui/card/Card'
 import { style } from '@/components/ui/style'
@@ -29,6 +33,8 @@ export const TabViewExample = () => {
 	const wait = (timeout: number | undefined) => {
 		return new Promise(resolve => setTimeout(resolve, timeout))
 	}
+	const { setValue } = useForm<IUser>({})
+	const { user } = useProfile(setValue)
 
 	const [index, setIndex] = useState(0)
 	const [routes] = useState([
@@ -41,7 +47,15 @@ export const TabViewExample = () => {
 		wait(2000).then(() => setRefreshing(false))
 	}, [])
 	const FirstRoute = () => (
-		<View style={[styles.scene, { backgroundColor: '#ff4081' }]} />
+		// <View style={[styles.scene, { backgroundColor: '#ff4081' }]} />
+		<>
+			<ScrollView
+				alwaysBounceVertical
+				refreshControl={
+					<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+				}
+			></ScrollView>
+		</>
 	)
 
 	const SecondRoute = () => (
@@ -52,7 +66,13 @@ export const TabViewExample = () => {
 					<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
 				}
 			>
-				<Card title={'Ресторан'} description={'Цена'} />
+				{user?.product?.map((order, index) => (
+					<Card
+						key={String(index)}
+						title={order.title}
+						description={order.description}
+					/>
+				))}
 
 				<RestaurantView />
 			</ScrollView>
@@ -78,7 +98,7 @@ export const TabViewExample = () => {
 							</Text>
 							{route.key === 'second' && Platform.OS === 'ios' && (
 								<Badge
-									value={focused ? 3 : null}
+									value={focused ? user?.product.length : null}
 									status='primary'
 									containerStyle={
 										focused

@@ -9,7 +9,7 @@ import { deleteTokenStorage, saveToStorage } from '@/services/auth/auth.helper'
 export const AuthService = {
 	async main(variant: 'reg' | 'login', email: string, password: string) {
 		const response = await request<IAuthResponse>({
-			url: getAuthUrl(`${variant === 'reg' ? 'register' : 'login'}`),
+			url: getAuthUrl(`${variant === 'reg' ? 'registration' : 'login'}`),
 			method: 'POST',
 			data: { email, password }
 		})
