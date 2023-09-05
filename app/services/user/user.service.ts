@@ -27,7 +27,7 @@ export const UserService = {
 	},
 	async updateProfile(data: IAuthFormData) {
 		return request<IUser>({
-			url: getUserUrl('profile'),
+			url: getUserUrl('update'),
 			method: 'PUT',
 			data
 		})

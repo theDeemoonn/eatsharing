@@ -1,4 +1,5 @@
 import { MaterialCommunityIcons } from '@expo/vector-icons'
+import { useQuery } from '@tanstack/react-query'
 import { FC, PropsWithChildren } from 'react'
 import { useForm } from 'react-hook-form'
 import { Pressable, Text, View } from 'react-native'
@@ -9,6 +10,7 @@ import { useProfile } from '@/components/screens/profile/useProfile'
 import { IProfileCard } from '@/components/ui/profileCard/profileCard.interface'
 import { TextInfo } from '@/components/ui/textInfo/TextInfo'
 import { useTypedNavigation } from '@/hooks/useTypedNavigation'
+import { UserService } from '@/services/user/user.service'
 import { phoneFormatDash } from '@/utils/phoneFormat'
 
 const ProfileCard: FC<PropsWithChildren<IProfileCard>> = ({
@@ -20,8 +22,12 @@ const ProfileCard: FC<PropsWithChildren<IProfileCard>> = ({
 }) => {
 	const { setValue } = useForm<IUser>({})
 	const { user } = useProfile(setValue)
+	const query = useQuery(['profile'], () => UserService.getProfile())
+
+	// console.log(query.data?.phone)
+	console.log(user?.phone)
+
 	const { navigate } = useTypedNavigation()
-	console.log('user', user)
 	return (
 		<View
 			className='border-t border-gray-200 bg-white rounded-xl min-h-[170]'
@@ -52,13 +58,17 @@ const ProfileCard: FC<PropsWithChildren<IProfileCard>> = ({
 			<Text className='px-4 py-3 flex-row justify-center items-center font-medium'>
 				Интересы
 			</Text>
-			{user?.interests?.map((interest, index) => (
-				<TextInfo
-					className='py-1 flex-row justify-center'
-					key={index}
-					text={interest.value}
-				/>
-			))}
+			{/*{user?.interests?.map((interest, index) => (*/}
+			{/*	<TextInfo*/}
+			{/*		className='py-1 flex-row justify-center'*/}
+			{/*		key={index}*/}
+			{/*		text={interest.value}*/}
+			{/*	/>*/}
+			{/*))}*/}
+			<TextInfo
+				className={'justify-center items-center'}
+				text={user?.interests}
+			/>
 		</View>
 	)
 }

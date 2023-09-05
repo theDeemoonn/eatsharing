@@ -3,6 +3,7 @@ node_modules/
 dist/
 .idea
 .fleet
+.env
 .vscode
 .expo-shared
 npm-debug.*

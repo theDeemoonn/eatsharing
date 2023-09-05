@@ -19,7 +19,7 @@ export interface IUser {
 	createdAt: string
 	updatedAt: string
 	roles: Role[]
-	interests: Interest[]
+	interests: string
 	product: Product[]
 }
 

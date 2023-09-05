@@ -18,6 +18,7 @@ const ProfileEdit: FC<IProfileEdit> = ({ isVisible, onClose }) => {
 		mode: 'onChange'
 	})
 
+	// @ts-ignore
 	const { isLoading, onSubmit } = useProfile(setValue)
 	return (
 		<SafeAreaProvider>

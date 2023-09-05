@@ -20,7 +20,6 @@ import RestaurantView from '../restaurantView/RestaurantView'
 
 import { useProfile } from '@/components/screens/profile/useProfile'
 import { Loader } from '@/components/ui'
-import Card from '@/components/ui/card/Card'
 import { style } from '@/components/ui/style'
 
 const LazyPlaceholder = () => (
@@ -66,13 +65,13 @@ export const TabViewExample = () => {
 					<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
 				}
 			>
-				{user?.product?.map((order, index) => (
-					<Card
-						key={String(index)}
-						title={order.title}
-						description={order.description}
-					/>
-				))}
+				{/*{user?.product?.map((order, index) => (*/}
+				{/*	<Card*/}
+				{/*		key={String(index)}*/}
+				{/*		title={order.title}*/}
+				{/*		description={order.description}*/}
+				{/*	/>*/}
+				{/*))}*/}
 
 				<RestaurantView />
 			</ScrollView>
@@ -109,7 +108,7 @@ export const TabViewExample = () => {
 							)}
 							{route.key === 'second' && Platform.OS === 'android' && (
 								<Badge
-									value={focused ? 3 : null}
+									value={focused ? user?.product.length : null}
 									status='primary'
 									containerStyle={
 										focused
